@@ -1,0 +1,33 @@
+#ColorPanelBox {
+  position: absolute;
+  //top: 0;
+  //left: 0;
+  //height: 100vh;
+  //width: 100vw;
+  top: calc(100vh - 100px);
+  left: calc(50% - 250px);
+  width: 500px;
+  height: 100px;
+  align-items: flex-end;
+  justify-content: center;
+
+
+  #ColorPanel {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: wheat;
+    margin: 30px;
+    justify-content: space-around;
+    align-items: center;
+
+    .color-elem{
+      height: 40px;
+      width: 40px;
+    }
+    .color-elem--selected{
+      padding: 2px;
+      border: 1px white solid;
+    }
+  }
+}

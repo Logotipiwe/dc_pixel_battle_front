@@ -1,3 +1,4 @@
+import {observer} from "mobx-react";
 
 function Div(props: any) {
     return (
@@ -10,4 +11,4 @@ function Div(props: any) {
     )
 }
 
-export default Div
+export default observer(Div)

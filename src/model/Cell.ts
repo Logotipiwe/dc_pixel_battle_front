@@ -1,6 +1,9 @@
+import {makeAutoObservable} from "mobx";
+
 export default class Cell{
     constructor() {
-        this.color = 'white'
+        makeAutoObservable(this)
+        this.color = 'yellow'
     }
 
     color: string

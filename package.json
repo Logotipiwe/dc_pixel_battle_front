@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.2.6",
     "mobx": "^6.9.0",
     "mobx-react": "^7.6.0",
+    "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",

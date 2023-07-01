@@ -1,17 +1,63 @@
 import {makeAutoObservable} from "mobx";
 import Cell from "./model/Cell";
 import {createContext} from "react";
+import {PixelDto} from "./model/Pixel";
+import {getBackUrl} from "./Utils";
 
 export default class RootStore {
     constructor() {
         makeAutoObservable(this)
-        const rows = new Array(this.height).fill(null);
-        this.field = rows.map(_ => new Array(this.width).fill(null).map(_ => new Cell()))
+        this.loadPixels().then((res: PixelDto[])=>{
+            console.log("lol")
+            const newField: Cell[][] = []
+            for (let rowIndex = 0; rowIndex < this.height; rowIndex++) {
+                const row: Cell[] = [];
+                newField.push(row);
+                for (let colIndex = 0; colIndex < this.width; colIndex++) {
+                    const cell = new Cell();
+                    const pixel = res.find(p=> p.row === rowIndex && p.column === colIndex);
+                    if(pixel){
+                        cell.color = pixel.color
+                    }
+                    row.push(cell)
+                }
+            }
+            this.field = newField;
+        })
+
+
+        this.selectColor = this.selectColor.bind(this);
+        this.clickCell = this.clickCell.bind(this);
     }
 
-    field: Cell[][]
+    field?: Cell[][]
 
-    height = 5;
-    width = 5;
+    height = 15;
+    width = 15;
+
+
+
+    colors: {color: string}[] = [
+        {color: 'white'},
+        {color: 'black'},
+        {color: 'blue'},
+        {color: 'yellow'},
+        {color: 'green'}
+    ]
+
+    selectedColorIndex = 0
+
+    loadPixels(){
+        return fetch( getBackUrl() + "/load-pixels").then(res=>res.json())
+    }
+
+    selectColor(i){
+        console.log("SELECTED " + i)
+        this.selectedColorIndex = i
+    }
+
+    clickCell(cell: Cell){
+        cell.color = this.colors[this.selectedColorIndex].color
+    }
 }
 export const RootContext = createContext<RootStore>(new RootStore());

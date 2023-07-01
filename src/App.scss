@@ -1,3 +1,4 @@
+$size: 40px;
 
 body{
     margin: 0;
@@ -16,7 +17,7 @@ body{
 }
 
 .cell{
-    height: 20px;
-    width: 20px;
+    height: $size;
+    width: $size;
     border: 1px black solid;
 }
