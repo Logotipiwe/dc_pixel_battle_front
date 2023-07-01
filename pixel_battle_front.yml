@@ -1,0 +1,10 @@
+version: "3"
+services:
+  pixel_battle_front:
+    container_name: pixel_battle_front
+    image: ${IMAGE}
+    networks:
+      - dc-net
+networks:
+  dc-net:
+    external: true
