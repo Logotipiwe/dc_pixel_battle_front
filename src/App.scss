@@ -21,3 +21,16 @@ body{
     width: $size;
     border: 1px black solid;
 }
+
+#header{
+    font-size: 25px;
+    margin: 5px 5px 30px;
+
+    >.div{
+        flex-direction: column;
+
+        p{
+            margin: 0;
+        }
+    }
+}

@@ -12,7 +12,6 @@ function ColorPanel(props) {
             <Div id="ColorPanel">
                 {rootStore.colors.map((color, i) => {
                     const isSelected = i === rootStore.selectedColorIndex;
-                    console.log("AA " + rootStore.selectedColorIndex)
                     return <Div
                         key={i}
                         className={"color-elem " + (isSelected ? "color-elem--selected": "")}

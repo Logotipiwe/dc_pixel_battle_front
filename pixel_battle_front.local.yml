@@ -2,12 +2,14 @@ version: "3"
 services:
   pixel_battle_front:
     container_name: pixel_battle_front
-    build: .
+    build:
+      context: .
+      args:
+        backHost: "http://localhost"
+        backPath: "/pixel-battle-back"
+        frontHost: "http://localhost"
     networks:
       - dc-net
-    environment:
-      aga: 123
-      age: 321
 networks:
   dc-net:
     external: true

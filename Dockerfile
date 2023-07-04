@@ -1,6 +1,16 @@
 FROM node:18 AS builder
 WORKDIR /app
 COPY . .
+
+#ARGS
+ARG backHost
+ARG backPath
+ARG frontHost
+RUN echo window.dc_env = {backHost: \"$backHost\", \
+    backPath: \"$backPath\", \
+    frontHost: \"$frontHost\"}  \
+    > public/env.js
+#END ARGS
 RUN npm i
 RUN npm run build
 

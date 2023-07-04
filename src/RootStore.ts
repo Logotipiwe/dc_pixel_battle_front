@@ -2,14 +2,21 @@ import {makeAutoObservable} from "mobx";
 import Cell from "./model/Cell";
 import {createContext} from "react";
 import {PixelDto} from "./model/Pixel";
-import {getBackUrl, getHomepage, getLoginFormUrl} from "./Utils";
+import {doFetch, getBackHost, getBackUrl} from "./Utils";
+import User from "./model/User";
 
 export default class RootStore {
     constructor() {
-        console.log(window['dc_env'].AGA)
         makeAutoObservable(this)
+        this.init()
+
+        this.selectColor = this.selectColor.bind(this);
+        this.clickCell = this.clickCell.bind(this);
+    }
+
+    async init(){
+        await this.loadUser();
         this.loadPixels().then((res: PixelDto[])=>{
-            console.log("lol")
             const newField: Cell[][] = []
             for (let rowIndex = 0; rowIndex < this.height; rowIndex++) {
                 const row: Cell[] = [];
@@ -25,13 +32,11 @@ export default class RootStore {
             }
             this.field = newField;
         })
-
-
-        this.selectColor = this.selectColor.bind(this);
-        this.clickCell = this.clickCell.bind(this);
     }
 
     field?: Cell[][]
+
+    user?: User;
 
     height = 15;
     width = 15;
@@ -48,25 +53,18 @@ export default class RootStore {
 
     selectedColorIndex = 0
 
-    doFetch(url: RequestInfo | URL, data?: RequestInit){
-        return fetch(url, data)
-            .then(response => {
-                if(response.status === 403){
-                    window.location.href = getLoginFormUrl()
-                }
-                return response
-            })
-            .then(res=>{
-                return res.json()
-            })
+    loadUser(){
+        return doFetch(getBackHost() + "/oauth2/getUser").then((res: User)=>{
+            this.user = res;
+            return res;
+        })
     }
 
     loadPixels(){
-        return this.doFetch( getBackUrl() + "/load-pixels")
+        return doFetch( getBackUrl() + "/load-pixels")
     }
 
     selectColor(i){
-        console.log("SELECTED " + i)
         this.selectedColorIndex = i
     }
 
