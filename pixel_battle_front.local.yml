@@ -5,6 +5,9 @@ services:
     build: .
     networks:
       - dc-net
+    environment:
+      aga: 123
+      age: 321
 networks:
   dc-net:
     external: true

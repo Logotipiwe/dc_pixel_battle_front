@@ -2,10 +2,11 @@ import {makeAutoObservable} from "mobx";
 import Cell from "./model/Cell";
 import {createContext} from "react";
 import {PixelDto} from "./model/Pixel";
-import {getBackUrl} from "./Utils";
+import {getBackUrl, getHomepage, getLoginFormUrl} from "./Utils";
 
 export default class RootStore {
     constructor() {
+        console.log(window['dc_env'].AGA)
         makeAutoObservable(this)
         this.loadPixels().then((res: PixelDto[])=>{
             console.log("lol")
@@ -47,8 +48,21 @@ export default class RootStore {
 
     selectedColorIndex = 0
 
+    doFetch(url: RequestInfo | URL, data?: RequestInit){
+        return fetch(url, data)
+            .then(response => {
+                if(response.status === 403){
+                    window.location.href = getLoginFormUrl()
+                }
+                return response
+            })
+            .then(res=>{
+                return res.json()
+            })
+    }
+
     loadPixels(){
-        return fetch( getBackUrl() + "/load-pixels").then(res=>res.json())
+        return this.doFetch( getBackUrl() + "/load-pixels")
     }
 
     selectColor(i){
