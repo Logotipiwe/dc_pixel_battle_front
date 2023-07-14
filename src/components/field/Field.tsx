@@ -1,17 +1,17 @@
-import React, {PropsWithChildren, useContext} from "react";
+import React, {PropsWithChildren} from "react";
 import Div from "../Div";
-import {RootContext} from "../../RootStore";
 import {observer} from "mobx-react";
+import {useRootStore} from "../../index";
 
 function Field(props: PropsWithChildren) {
-    const rootStore = useContext(RootContext);
+    const rootStore = useRootStore();
     return (
         <Div id="Field">
-            {rootStore.field?.map(row => {
-                return <Div className="field_row">
-                    {row.map((cell, i) => {
+            {rootStore.field?.map((row, i) => {
+                return <Div className="field_row" key={i}>
+                    {row.map((cell, j) => {
                         return <Div
-                            key={i}
+                            key={j}
                             className="cell"
                             style={{backgroundColor: cell.color}}
                             onClick={rootStore.clickCell.bind(null, cell)}

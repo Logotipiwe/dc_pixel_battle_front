@@ -1,12 +1,10 @@
 import Div from "../Div";
-import {useContext} from "react";
-import {RootContext} from "../../RootStore";
 import "./ColorPanel.scss"
-import {observable} from "mobx";
 import {observer} from "mobx-react";
+import {useRootStore} from "../../index";
 
 function ColorPanel(props) {
-    const rootStore = useContext(RootContext);
+    const rootStore = useRootStore();
     return (
         <Div id="ColorPanelBox">
             <Div id="ColorPanel">

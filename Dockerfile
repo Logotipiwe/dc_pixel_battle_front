@@ -3,13 +3,16 @@ WORKDIR /app
 COPY . .
 
 #ARGS
-ARG backHost
-ARG backPath
-ARG frontHost
-RUN echo window.dc_env = {backHost: \"$backHost\", \
-    backPath: \"$backPath\", \
-    frontHost: \"$frontHost\"}  \
-    > public/env.js
+#ARG backHost
+#ARG backPath
+#ARG frontHost
+#ARG idpUrl
+
+#RUN echo window.dc_env = {backHost: \"$backHost\", \
+#    backPath: \"$backPath\", \
+#    idpUrl: \"$idpUrl\", \
+#    frontHost: \"$frontHost\"}  \
+#    > public/env.js
 #END ARGS
 RUN npm i
 RUN npm run build

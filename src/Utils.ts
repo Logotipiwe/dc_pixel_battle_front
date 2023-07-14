@@ -22,6 +22,11 @@ function getDcEnv(){
     return window['dc_env']
 }
 
+export function getIdpUrl(){
+    debugger
+    return getDcEnv().idpUrl
+}
+
 export function getBackHost(){
     return getDcEnv().backHost;
 }
@@ -38,14 +43,19 @@ export function getBackUrl(){
     return getBackHost() + getBackPath()
 }
 
+const handleUnauthorized = response => {
+    if(response.status === 403){
+        window.location.href = getLoginFormUrl()
+    }
+    return response
+};
+
 export function doFetch(url: RequestInfo | URL, data?: RequestInit){
-    return fetch(url, data)
-        .then(response => {
-            if(response.status === 403){
-                window.location.href = getLoginFormUrl()
-            }
-            return response
-        })
+    return fetch(url, data).then(handleUnauthorized)
+}
+
+export function doFetchJson(url: RequestInfo | URL, data?: RequestInit){
+    return fetch(url, data).then(handleUnauthorized)
         .then(res=>{
             return res.json()
         })

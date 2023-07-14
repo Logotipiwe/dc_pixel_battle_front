@@ -4,10 +4,11 @@ services:
     container_name: pixel_battle_front
     build:
       context: .
-      args:
-        backHost: "http://localhost"
-        backPath: "/pixel-battle-back"
-        frontHost: "http://localhost"
+#      args:
+#        backHost: "http://localhost"
+#        backPath: "/pixel-battle-back"
+#        frontHost: "http://localhost"
+#        idpUrl: "http://localhost/oauth2"
     networks:
       - dc-net
 networks:
