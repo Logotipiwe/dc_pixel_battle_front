@@ -10,7 +10,7 @@ export function getLoginFormUrl(){
     const host = getBackHost();
     const idpUrl = "/oauth2"
     const loginFormPath = "/login"
-    const getRedirTo = isDev() ? getFrontUrl() :  ("/"+getHomepage())
+    const getRedirTo = getFrontUrl()
     return `${host}${idpUrl}${loginFormPath}?redirect=${encodeURIComponent(getRedirTo)}`
 }
 
