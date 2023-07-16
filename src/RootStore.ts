@@ -115,7 +115,6 @@ export default class RootStore {
             }
         }
         const data: object = JSON.parse(dataStr)
-        debugger
         parseFloat(data['body'].count)
         console.log("HANDLING", data)
         let handleFunc = typeToHandler[data['type']];

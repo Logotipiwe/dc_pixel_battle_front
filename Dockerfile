@@ -12,7 +12,7 @@ COPY . .
 #    backPath: \"$backPath\", \
 #    idpUrl: \"$idpUrl\", \
 #    frontHost: \"$frontHost\"}  \
-#    > public/env.js
+#    > public/env.local.js
 #END ARGS
 RUN npm i
 RUN npm run build

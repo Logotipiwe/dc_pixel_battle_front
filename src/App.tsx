@@ -21,8 +21,8 @@ function App() {
                 </Div>
                 : <Div>Loading...</Div>}
             </Div>
-            <ColorPanel/>
             <Field/>
+            <ColorPanel/>
         </div>
     );
 }

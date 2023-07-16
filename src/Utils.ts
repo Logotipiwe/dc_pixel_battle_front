@@ -23,7 +23,6 @@ function getDcEnv(){
 }
 
 export function getIdpUrl(){
-    debugger
     return getDcEnv().idpUrl
 }
 

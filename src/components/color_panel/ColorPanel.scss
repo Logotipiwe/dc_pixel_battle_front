@@ -1,25 +1,20 @@
 #ColorPanelBox {
-  position: absolute;
-  //top: 0;
+  //top: calc(100vh - 100px);
   //left: 0;
-  //height: 100vh;
-  //width: 100vw;
-  top: calc(100vh - 100px);
-  left: calc(50% - 250px);
-  width: 500px;
+  width: 100vw;
   height: 100px;
   align-items: flex-end;
   justify-content: center;
 
 
   #ColorPanel {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: wheat;
-    margin: 30px;
+    background-color: rgba(0, 0, 0, 0.28);
+    margin: 20px;
     justify-content: space-around;
     align-items: center;
+    flex-grow: 1;
+    padding: 10px 0;
+    max-width: 500px;
 
     .color-elem{
       height: 40px;
