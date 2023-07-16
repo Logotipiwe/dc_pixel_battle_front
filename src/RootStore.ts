@@ -1,7 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import Cell from "./model/Cell";
 import {PixelDto} from "./model/Pixel";
-import {doFetch, doFetchJson, getBackUrl, getIdpUrl} from "./Utils";
+import {doFetchJson, getBackDomain, getBackPath, getBackUrl, getIdpUrl} from "./Utils";
 import User from "./model/User";
 import Color from "./model/Color";
 
@@ -127,7 +127,8 @@ export default class RootStore {
     }
 
     private setupWebsocket() {
-        const ws = new WebSocket("ws://localhost:3002/api/socket/listen-changes");
+        const backUrlWithoutScheme = getBackDomain() + getBackPath();
+        const ws = new WebSocket(`ws://${backUrlWithoutScheme}/api/socket/listen-changes`);
         this.ws = ws
         ws.onopen = ()=>{console.log("ws opened")}
         ws.onmessage = msg => {this.handleWsMessage(msg.data)}

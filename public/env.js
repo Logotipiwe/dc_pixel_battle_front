@@ -1,5 +1,6 @@
 window.dc_env = {
-    backHost: "http://logotipiwe.ru",
+    backScheme: "http",
+    backDomain: "logotipiwe.ru",
     backPath: "/pixel-battle-back",
     frontHost: "http://logotipiwe.ru",
     idpUrl: "http://logotipiwe.ru/oauth2"

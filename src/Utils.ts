@@ -27,8 +27,16 @@ export function getIdpUrl(){
     return getDcEnv().idpUrl
 }
 
+export function getBackDomain(){
+    return getDcEnv().backDomain
+}
+
+export function getBackScheme() {
+    return getDcEnv().backScheme;
+}
+
 export function getBackHost(){
-    return getDcEnv().backHost;
+    return getBackScheme() + "://" + getBackDomain();
 }
 export function getFrontHost(){
     return getDcEnv().frontHost;
