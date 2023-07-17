@@ -35,8 +35,8 @@ export default class RootStore {
 
     user?: User;
 
-    height = 15;
-    width = 15;
+    height = 45;
+    width = 45;
 
     colors: Color[] = []
 
