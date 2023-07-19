@@ -16,7 +16,7 @@ function App() {
                     <a href="/oauth2/logout">Log out</a>
                     <p>Logged as: {user.name}</p>
                     {rootStore.usersCount !== undefined
-                        ? <p>Users: {rootStore.usersCount}</p>
+                        ? <p>Players: {rootStore.usersCount}</p>
                         : null}
                 </Div>
                 : <Div>Loading...</Div>}
