@@ -42,6 +42,8 @@ export default class RootStore {
 
     selectedColorIndex = 0
 
+    pingInterval;
+
     get selectedColor(): Color | undefined {
         let i = this.selectedColorIndex;
         return i === -1 ? undefined : this.colors[i]
@@ -129,9 +131,17 @@ export default class RootStore {
         const backUrlWithoutScheme = getBackDomain() + getBackPath();
         const ws = new WebSocket(`ws://${backUrlWithoutScheme}/api/socket/listen-changes`);
         this.ws = ws
-        ws.onopen = ()=>{console.log("ws opened")}
+        ws.onopen = ()=>{
+            console.log("ws opened")
+            this.pingInterval = setInterval(()=>{
+                this.sendSocketMsg("PING")
+            }, 50000)
+        }
         ws.onmessage = msg => {this.handleWsMessage(msg.data)}
-        ws.onclose = ev => {console.log("ws closed", ev)}
+        ws.onclose = ev => {
+            console.log("ws closed", ev)
+            clearInterval(this.pingInterval)
+        }
         ws.onerror = err => {console.warn("ws err", err)}
     }
 
