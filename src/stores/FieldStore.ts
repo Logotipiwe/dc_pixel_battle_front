@@ -61,6 +61,6 @@ export default class FieldStore {
                 field[row][col].color = color;
                 console.log(`Showing history, entry ${row}:${col} - ${color}`)
             }
-        }, 30);
+        }, 10);
     }
 }
