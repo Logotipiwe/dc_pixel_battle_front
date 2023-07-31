@@ -7,11 +7,10 @@ export function getHomepage(){
 }
 
 export function getLoginFormUrl(){
-    const host = getBackHost();
-    const idpUrl = "/oauth2"
+    const idpUrl = getIdpUrl();
     const loginFormPath = "/login"
     const getRedirTo = getFrontUrl()
-    return `${host}${idpUrl}${loginFormPath}?redirect=${encodeURIComponent(getRedirTo)}`
+    return `${idpUrl}${loginFormPath}?redirect=${encodeURIComponent(getRedirTo)}`
 }
 
 export function getFrontUrl(){
