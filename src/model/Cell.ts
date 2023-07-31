@@ -1,6 +1,5 @@
 import {makeAutoObservable} from "mobx";
-
-export default class Cell{
+export default class Cell {
     constructor(
         row: number,
         column: number,

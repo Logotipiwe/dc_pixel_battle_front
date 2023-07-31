@@ -41,4 +41,18 @@
       border: 1px white solid;
     }
   }
+
+  #history-play{
+    align-items: center;
+    height: 100%;
+
+    button{
+      background-color: royalblue;
+      color: white;
+      width: 40px;
+      height: 30px;
+      border: none;
+      border-radius: 5px;
+    }
+  }
 }

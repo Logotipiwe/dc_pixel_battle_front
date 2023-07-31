@@ -25,6 +25,12 @@ function ColorPanel(props) {
                     </Div>
                 })}
             </Div>
+            <Div id="history-play">
+                <button
+                    onClick={fieldStore.playHistory}
+                    disabled={fieldStore.playingHistory}
+                >{">>"}</button>
+            </Div>
         </Div>
     )
 }

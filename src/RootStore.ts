@@ -1,10 +1,11 @@
 import {makeAutoObservable} from "mobx";
 import Cell from "./model/Cell";
-import {PixelDto} from "./model/Pixel";
+import Pixel, {PixelDto} from "./model/Pixel";
 import {doFetchJson, getBackDomain, getBackPath, getBackUrl, getIdpUrl} from "./Utils";
 import User from "./model/User";
 import Color from "./model/Color";
 import FieldStore from "./stores/FieldStore";
+import {Colorable} from "./model/Colorable";
 
 export default class RootStore {
     constructor() {
@@ -14,6 +15,7 @@ export default class RootStore {
 
         this.selectColor = this.selectColor.bind(this);
         this.clickCell = this.clickCell.bind(this);
+        this.initFieldFromColors = this.initFieldFromColors.bind(this);
 
         setTimeout(()=>{
             this.sendSocketMsg("JOIN")
@@ -67,21 +69,26 @@ export default class RootStore {
         })
     }
 
+    initFieldFromColors(colors: Colorable[]){
+        const newField: Cell[][] = []
+        for (let rowIndex = 0; rowIndex < this.height; rowIndex++) {
+            const row: Cell[] = [];
+            newField.push(row);
+            for (let colIndex = 0; colIndex < this.width; colIndex++) {
+                const pixel = colors.find(p=> p.row === rowIndex && p.col === colIndex);
+                const color = pixel ? pixel.color : undefined;
+                const cell = new Cell(rowIndex, colIndex, color);
+                row.push(cell)
+            }
+        }
+        this.field = newField;
+        return newField;
+    }
+
     loadPixels(){
         return doFetchJson( getBackUrl() + "/api/load-pixels").then((res: PixelDto[])=>{
-            const newField: Cell[][] = []
-            for (let rowIndex = 0; rowIndex < this.height; rowIndex++) {
-                const row: Cell[] = [];
-                newField.push(row);
-                for (let colIndex = 0; colIndex < this.width; colIndex++) {
-                    const pixel = res.find(p=> p.row === rowIndex && p.column === colIndex);
-                    const color = pixel ? pixel.color : undefined;
-                    const cell = new Cell(rowIndex, colIndex, color);
-                    row.push(cell)
-                }
-            }
-            this.field = newField;
-            return newField;
+            const pixels: Pixel[] = res.map(dto=> Pixel.fromDto(dto))
+            return this.initFieldFromColors(pixels);
         })
     }
 
