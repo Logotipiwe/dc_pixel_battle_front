@@ -36,8 +36,8 @@ export default class FieldStore {
     }
 
     async playHistory() {
+        this.playingHistory = true;
         doFetchJson(getBackUrl() + "/api/get-history").then(async (res: HistoryDto[])=>{
-            this.playingHistory = true;
             const field = this.rootStore.initFieldFromColors([]);
             const history = res.map(dto=>History.fromDto(dto))
             await this.showHistoryBySteps(field, history);
