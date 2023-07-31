@@ -6,8 +6,9 @@ import "./Field.scss"
 
 function Field(props: PropsWithChildren) {
     const rootStore = useRootStore();
+    const fieldStore = rootStore.fieldStore;
     return (
-        <Div id="Field">
+        <Div id="Field" className={`size-${fieldStore.cellsSize}`}>
             <Div id="Field_inner">
             {rootStore.field?.map((row, i) => {
                 return <Div className="field_row" key={i}>

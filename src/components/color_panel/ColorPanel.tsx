@@ -5,8 +5,13 @@ import {useRootStore} from "../../index";
 
 function ColorPanel(props) {
     const rootStore = useRootStore();
+    const fieldStore = rootStore.fieldStore;
     return (
         <Div id="ColorPanelBox">
+            <Div id="resize-buttons">
+                <button onClick={fieldStore.increaseCellsSize}>+</button>
+                <button onClick={fieldStore.decreaseCellsSize}>-</button>
+            </Div>
             <Div id="ColorPanel">
                 {rootStore.colors.map((color, i) => {
                     const isSelected = i === rootStore.selectedColorIndex;

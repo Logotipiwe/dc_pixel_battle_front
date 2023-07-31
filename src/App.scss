@@ -1,5 +1,3 @@
-$size: 40px;
-
 body{
     margin: 0;
     height: 100vh;
@@ -33,8 +31,6 @@ body{
 }
 
 .cell{
-    height: $size;
-    width: $size;
     border: 1px #656565 solid;
 }
 

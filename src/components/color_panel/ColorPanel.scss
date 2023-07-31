@@ -6,6 +6,22 @@
   align-items: flex-end;
   justify-content: center;
 
+  #resize-buttons{
+    flex-direction: column;
+    align-self: center;
+    margin: 30px 0;
+    height: 70px;
+    justify-content: space-around;
+
+    button{
+      background-color: royalblue;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      height: 25px;
+      width: 25px;
+    }
+  }
 
   #ColorPanel {
     background-color: rgba(0, 0, 0, 0.28);

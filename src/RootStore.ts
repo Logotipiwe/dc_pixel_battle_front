@@ -4,9 +4,11 @@ import {PixelDto} from "./model/Pixel";
 import {doFetchJson, getBackDomain, getBackPath, getBackUrl, getIdpUrl} from "./Utils";
 import User from "./model/User";
 import Color from "./model/Color";
+import FieldStore from "./stores/FieldStore";
 
 export default class RootStore {
     constructor() {
+        this.fieldStore = new FieldStore(this)
         makeAutoObservable(this)
         this.init()
 
@@ -17,6 +19,8 @@ export default class RootStore {
             this.sendSocketMsg("JOIN")
         }, 1000)
     }
+
+    fieldStore: FieldStore;
 
     async init(){
         await Promise.all([
