@@ -2,8 +2,6 @@ import RootStore from "../RootStore";
 import {makeAutoObservable} from "mobx";
 import {doFetchJson, getBackUrl} from "../Utils";
 import History, {HistoryDto} from "../model/History";
-import {deflateRaw} from "zlib";
-import Field from "../components/field/Field";
 import Cell from "../model/Cell";
 
 export default class FieldStore {

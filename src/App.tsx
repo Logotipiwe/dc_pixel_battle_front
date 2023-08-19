@@ -11,15 +11,22 @@ function App() {
     const user = rootStore.user;
     return (
         <div id="App">
-            <Div id="header">{user
-                ? <Div>
-                    <a href="/oauth2/logout">Log out</a>
-                    <p>Logged as: {user.name}</p>
-                    {rootStore.usersCount !== undefined
-                        ? <p>Players: {rootStore.usersCount}</p>
-                        : null}
+            <Div id="header">
+                <Div id="min-slider">
+                    <Div id='user-coins'>
+                        <img src={"pixel-battle/img/coin.svg"}/>
+                        <Div>30</Div>
+                    </Div>
                 </Div>
-                : <Div>Loading...</Div>}
+                {/*{user
+                ? <>
+                    <Div>{user.name}</Div>
+                    {rootStore.usersCount !== undefined
+                        ? <Div>P: {rootStore.usersCount}</Div>
+                        : null}
+                    <a href="/oauth2/logout">Log out</a>
+                </>
+                : <Div>Loading...</Div>}*/}
             </Div>
             <Field/>
             <ColorPanel/>
