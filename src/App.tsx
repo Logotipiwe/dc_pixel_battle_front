@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import './App.scss';
-import Field from "./components/field/Field";
-import ColorPanel from "./components/color_panel/ColorPanel";
+import Field from "./components/Field";
+import ColorPanel from "./components/ColorPanel";
 import {observer} from "mobx-react";
 import Div from "./components/Div";
 import {useRootStore} from "./index";

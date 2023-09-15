@@ -39,7 +39,10 @@ body{
     font-size: 25px;
 
     #min-slider{
-        margin: 5px 5px 30px;
+        margin: 5px 5px;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
 
         #user-coins{
             height: 33px;

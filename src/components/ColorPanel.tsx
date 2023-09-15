@@ -1,7 +1,7 @@
-import Div from "../Div";
+import Div from "./Div";
 import "./ColorPanel.scss"
 import {observer} from "mobx-react";
-import {useRootStore} from "../../index";
+import {useRootStore} from "../index";
 
 function ColorPanel(props) {
     const rootStore = useRootStore();

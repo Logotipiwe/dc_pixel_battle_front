@@ -1,8 +1,9 @@
 import React, {PropsWithChildren} from "react";
-import Div from "../Div";
+import Div from "./Div";
 import {observer} from "mobx-react";
-import {useRootStore} from "../../index";
+import {useRootStore} from "../index";
 import "./Field.scss"
+import CellComponent from "./field/Cell";
 
 function Field(props: PropsWithChildren) {
     const rootStore = useRootStore();
@@ -13,12 +14,7 @@ function Field(props: PropsWithChildren) {
             {rootStore.field?.map((row, i) => {
                 return <Div className="field_row" key={i}>
                     {row.map((cell, j) => {
-                        return <Div
-                            key={j}
-                            className="cell"
-                            style={{backgroundColor: cell.color}}
-                            onClick={rootStore.clickCell.bind(null, cell)}
-                        />
+                        return <CellComponent cell={cell} j={j}/>
                     })}
                 </Div>
             })}
